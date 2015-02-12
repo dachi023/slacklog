@@ -9,6 +9,7 @@ inject = require 'gulp-inject'
 connect = require 'gulp-connect'
 watch = require 'gulp-watch'
 open = require 'gulp-open'
+bowerFiles = require 'main-bower-files'
 
 gulp.task 'coffee', ->
   gulp.src 'app/**/*.coffee'
@@ -17,7 +18,20 @@ gulp.task 'coffee', ->
     .pipe annotate()
     .pipe concat 'app.js'
     .pipe uglify()
-    .pipe gulp.dest 'build/'
+    .pipe gulp.dest 'app/build/'
+
+gulp.task 'inject', ['coffee'], ->
+  gulp.src 'app/index.html'
+    .pipe inject(
+      gulp.src bowerFiles(),
+        read: false
+      relative: true
+      name: 'bower')
+    .pipe inject(
+      gulp.src 'app/build/**/*.js',
+        read: false
+      relative: true)
+    .pipe gulp.dest 'app'
 
 gulp.task 'connect', ->
   connect.server
@@ -31,16 +45,15 @@ gulp.task 'open', ['connect'], ->
       url: 'http://localhost:8001'
       app: 'chrome'
 
-#todo watch細かく
 gulp.task 'watch', ->
   gulp.watch 'app/**/*', ['reload']
 
-#todo reload細かく
 gulp.task 'reload', ->
   gulp.src 'app/**/*'
     .pipe connect.reload()
 
 gulp.task 'default', [
+  'inject'
   'open'
   'watch'
 ]
