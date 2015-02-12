@@ -2,6 +2,7 @@
   "name": "slacklog",
   "version": "0.0.1",
   "description": "GUI tool for viewing the log of Slack",
+  "private": true,
   "main": "app/index.html",
   "scripts": {
     "test": "gulp test"
