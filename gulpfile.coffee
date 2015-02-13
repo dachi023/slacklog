@@ -5,6 +5,7 @@ concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
 coffee = require 'gulp-coffee'
 annotate = require 'gulp-ng-annotate'
+stylus = require 'gulp-stylus'
 inject = require 'gulp-inject'
 connect = require 'gulp-connect'
 watch = require 'gulp-watch'
@@ -20,7 +21,13 @@ gulp.task 'coffee', ->
     .pipe uglify()
     .pipe gulp.dest 'app/build/'
 
-gulp.task 'inject', ['coffee'], ->
+gulp.task 'stylus', ->
+  gulp.src 'app/**/*.styl'
+    .pipe plumber()
+    .pipe stylus()
+    .pipe gulp.dest 'app/build'
+
+gulp.task 'inject', ['coffee', 'stylus'], ->
   gulp.src 'app/index.html'
     .pipe inject(
       gulp.src bowerFiles(),
@@ -28,7 +35,7 @@ gulp.task 'inject', ['coffee'], ->
       relative: true
       name: 'bower')
     .pipe inject(
-      gulp.src 'app/build/**/*.js',
+      gulp.src 'app/build/**/*',
         read: false
       relative: true)
     .pipe gulp.dest 'app'
@@ -46,7 +53,7 @@ gulp.task 'open', ['connect'], ->
       app: 'chrome'
 
 gulp.task 'watch', ->
-  gulp.watch 'app/**/*', ['reload']
+  gulp.watch 'app/**/*', ['inject', 'reload']
 
 gulp.task 'reload', ->
   gulp.src 'app/**/*'

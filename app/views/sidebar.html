@@ -1,5 +1,5 @@
-<div class="ui visible left vertical labeled medium sidebar menu">
-  <a class="item" href="" ng-click="" ng-repeat="channel in channels" ng-cloak>
+<div class="ui visible left vertical labeled sidebar menu pushable">
+  <a class="item" ng-href="#/channel/{{channel.name}}" ng-repeat="channel in channels" ng-cloak>
     # {{channel.name}}
   </a>
 </div>

@@ -10,6 +10,9 @@ angular.module 'slacklog', [
   .when '/home',
     templateUrl: 'views/home.html'
     controller: 'homeCtrl'
+  .when '/channel/:name',
+    templateUrl: 'views/channel.html'
+    controller: 'channelCtrl'
   .otherwise
     redirectTo: '/home'
   return
