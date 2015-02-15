@@ -1,5 +1,13 @@
-<div class="ui visible left vertical labeled sidebar menu pushable">
-  <a class="item" ng-href="#/channel/{{channel.name}}" ng-repeat="channel in channels" ng-cloak>
+<div class="ui visible left vertical sidebar menu pushable">
+  <a class="item">
+    <div class="ui search">
+      <div class="ui transparent left icon input">
+        <input type="text" placeholder="Search channels" ng-model="search">
+        <i class="search icon"></i>
+      </div>
+    </div>
+  </a>
+  <a class="item" ng-href="#/channel/{{channel.name}}/{{channel.id}}" ng-repeat="channel in channels | filter:search" ng-cloak>
     # {{channel.name}}
   </a>
 </div>

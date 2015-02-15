@@ -10,7 +10,7 @@ angular.module 'slacklog', [
   .when '/home',
     templateUrl: 'views/home.html'
     controller: 'homeCtrl'
-  .when '/channel/:name',
+  .when '/channel/:name/:id',
     templateUrl: 'views/channel.html'
     controller: 'channelCtrl'
   .otherwise

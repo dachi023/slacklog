@@ -7,7 +7,6 @@ angular.module 'slacklog'
         .first()
         .width()
     , (newVal) ->
-      console.log newVal
       element.css
         'margin-left': newVal
     return
