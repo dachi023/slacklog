@@ -7,7 +7,7 @@
       </div>
     </div>
   </a>
-  <a class="item" ng-href="#/channel/{{channel.name}}/{{channel.id}}" ng-repeat="channel in channels | filter:search" ng-cloak>
+  <a class="item" ng-href="#channel/{{channel.name}}/{{channel.id}}" ng-repeat="channel in channels | filter:search" ng-cloak>
     # {{channel.name}}
   </a>
 </div>

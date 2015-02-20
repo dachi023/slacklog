@@ -4,10 +4,10 @@ angular.module 'slacklog'
   templateUrl: 'views/sidebar.html'
   replace: true
   scope: true
-  controller: ($scope, $location, slack) ->
+  controller: ($scope, $location, api) ->
     $scope.$on '$routeChangeSuccess', ->
       return if $scope.channels and 0 < $scope.channels.length
-      slack.channels().get {}, (response) ->
+      api.channels().get {}, (response) ->
         unless response.ok
           alert 'Failed to get channels'
           return

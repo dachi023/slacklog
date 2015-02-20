@@ -50,7 +50,7 @@ gulp.task 'open', ['connect'], ->
   gulp.src 'app/index.html'
     .pipe open '',
       url: 'http://localhost:8001'
-      app: 'chrome'
+      app: 'google chrome'
 
 gulp.task 'watch', ->
   gulp.watch 'app/**/*', ['inject', 'reload']
@@ -66,4 +66,5 @@ gulp.task 'default', [
 ]
 
 gulp.task 'build', [
+  'inject'
 ]

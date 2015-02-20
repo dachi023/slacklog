@@ -1,8 +1,9 @@
 angular.module 'slacklog'
-.controller 'channelCtrl', ($scope, $routeParams, slack, slackLog, slackFilter) ->
+.controller 'channelCtrl', ($scope, $routeParams, api, slackFilter) ->
   $scope.name = $routeParams.name
   $scope.$on '$routeChangeSuccess', ->
-    slack.history().get
+    #FIXME
+    api.cahannelLog().get
       id: $routeParams.id
     , (response) ->
       unless response.ok

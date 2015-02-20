@@ -7,12 +7,12 @@ angular.module 'slacklog', [
 ]
 .config ($routeProvider) ->
   $routeProvider
-  .when '/home',
+  .when 'home',
     templateUrl: 'views/home.html'
     controller: 'homeCtrl'
-  .when '/channel/:name/:id',
+  .when 'channel/:name/:id',
     templateUrl: 'views/channel.html'
     controller: 'channelCtrl'
   .otherwise
-    redirectTo: '/home'
+    redirectTo: 'home'
   return
